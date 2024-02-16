@@ -17,6 +17,10 @@ ax.set_title('Click to add a point with Z coordinate')
 points = np.array([]).reshape(0, 3)  # Initialize an empty array for points
 
 def onclick(event):
+    # Check if the click was on the plot area, not on the button
+    if event.inaxes != ax:
+        return  # Ignore clicks outside the plot area
+    
     if event.xdata is not None and event.ydata is not None:
         z = simpledialog.askfloat("Input", "Enter Z coordinate:", parent=root)
         if z is not None:  # Check if Z was input
